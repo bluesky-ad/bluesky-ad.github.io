@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>作品全集 - 藍天廣告</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+    body { font-family: 'Noto Sans TC', sans-serif; }
+    .waterfall-container {
+        column-count: 2;
+        column-gap: 1rem;
+    }
+    @media (min-width: 768px) { .waterfall-container { column-count: 3; } }
+    @media (min-width: 1024px) { .waterfall-container { column-count: 4; } }
+    .waterfall-item {
+        break-inside: avoid;
+        margin-bottom: 1rem;
+        animation: fadeIn 0.6s ease-out forwards;
+    }
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(20px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+</style>
+</head>
+<body class="bg-gray-50 text-slate-800">
+
+<nav class="bg-white/95 backdrop-blur-md shadow-sm sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
+        <div class="flex items-center space-x-2">
+            <div class="bg-blue-600 text-white px-2 py-1 rounded font-black italic text-sm">藍天照相打字行</div>
+            <span class="text-lg font-black text-slate-800 tracking-tight hidden md:block">廣告設計</span>
+        </div>
+        <div class="font-bold">
+            <a href="index.html" class="text-blue-600 border-b-2 border-blue-600 pb-1">回首頁</a>
+        </div>
+    </div>
+</nav>
+
+<header class="bg-white border-b py-6">
+    <div class="max-w-7xl mx-auto px-4">
+        <div class="flex flex-col lg:flex-row justify-between items-center gap-4">
+            <div class="text-center lg:text-left">
+                <h1 class="text-xl font-black text-slate-900 italic">實品範例展示</h1>
+            </div>
+            
+            <div class="w-full lg:w-auto bg-slate-50 px-6 py-3 rounded-2xl border border-slate-100 text-sm">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-1 font-bold text-slate-600">
+                    <p>📍 地址：花蓮市明心街6-5號</p>
+                    <p>📞 電話：03-8357789</p>
+                    <div class="flex items-center">
+                        <span class="mr-1">💬 LINE：0920612429</span>
+                        <a href="https://line.me/ti/p/~0920612429" class="ml-2 bg-green-500 text-white px-2 py-0.5 rounded text-[10px] hover:bg-green-600 transition">直接加入</a>
+                    </div>
+                    <p>⏰ 時間：周一至五 08:00-17:30</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<section class="py-8">
+    <div class="max-w-7xl mx-auto px-4">
+        <div id="image-grid" class="waterfall-container">
+            <div class="waterfall-item"><img src="https://picsum.photos/400/500?random=11" class="w-full rounded-2xl shadow-sm border border-white"></div>
+            <div class="waterfall-item"><img src="https://picsum.photos/400/300?random=12" class="w-full rounded-2xl shadow-sm border border-white"></div>
+            <div class="waterfall-item"><img src="https://picsum.photos/400/600?random=13" class="w-full rounded-2xl shadow-sm border border-white"></div>
+            <div class="waterfall-item"><img src="https://picsum.photos/400/400?random=14" class="w-full rounded-2xl shadow-sm border border-white"></div>
+            <div class="waterfall-item"><img src="https://picsum.photos/400/700?random=15" class="w-full rounded-2xl shadow-sm border border-white"></div>
+            <div class="waterfall-item"><img src="https://picsum.photos/400/350?random=16" class="w-full rounded-2xl shadow-sm border border-white"></div>
+            <div class="waterfall-item"><img src="https://picsum.photos/400/550?random=17" class="w-full rounded-2xl shadow-sm border border-white"></div>
+            <div class="waterfall-item"><img src="https://picsum.photos/400/450?random=18" class="w-full rounded-2xl shadow-sm border border-white"></div>
+        </div>
+
+        <div id="loading" class="text-center py-10 opacity-0 transition-opacity">
+            <div class="inline-block w-6 h-6 border-2 border-blue-600 border-t-transparent rounded-full animate-spin"></div>
+        </div>
+    </div>
+</section>
+
+<script>
+    const grid = document.getElementById('image-grid');
+    const loading = document.getElementById('loading');
+    let isLoading = false;
+
+    // 載入更多照片的邏輯
+    function loadMore() {
+        if (isLoading) return;
+        isLoading = true;
+        loading.style.opacity = '1';
+
+        setTimeout(() => {
+            // 每次載入 4 張
+            for (let i = 0; i < 4; i++) {
+                const h = Math.floor(Math.random() * 300) + 300;
+                const item = document.createElement('div');
+                item.className = 'waterfall-item';
+                item.innerHTML = `<img src="https://picsum.photos/400/${h}?random=${Math.random()}" class="w-full rounded-2xl shadow-sm border border-white">`;
+                grid.appendChild(item);
+            }
+            isLoading = false;
+            loading.style.opacity = '0';
+        }, 800);
+    }
+
+    // 監聽滾動
+    window.addEventListener('scroll', () => {
+        if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 800) {
+            loadMore();
+        }
+    });
+</script>
+
+</body>
+</html>
