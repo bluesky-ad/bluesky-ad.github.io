@@ -45,7 +45,7 @@ body { font-family: 'Noto Sans TC', sans-serif; scroll-behavior: smooth; }
 }
 #pen-knife {
     position: absolute;
-    width: 40px; /* 縮小筆刀，使其精緻點 */
+    width: 40px; /* 縮小筆刀 */
     z-index: 10000;
     display: none;
     transform: rotate(-10deg); 
@@ -101,7 +101,6 @@ body { font-family: 'Noto Sans TC', sans-serif; scroll-behavior: smooth; }
 <div class="text-xl md:text-1xl text-slate-700 leading-relaxed font-medium">
 <p>在地深耕 <span class="text-blue-600 font-black">40 餘年</span>，我們始終陪伴在您身邊。</p>
 <p>我們憑藉多年累積的專業經驗，見證了廣告產業的轉型與成長，始終堅持以品質與效率為核心，為客戶打造最合適的解決方案。</p>
-<p>秉持著在地服務的熱忱，不論需求大小，我們都以同樣的用心與專業對待，細心傾聽、確實執行，只為交付讓您滿意的成果。</p>
 </div>
 </div>
 </section>
@@ -110,7 +109,7 @@ body { font-family: 'Noto Sans TC', sans-serif; scroll-behavior: smooth; }
 <div class="max-w-5xl mx-auto px-4">
     <div class="text-center mb-12">
         <h2 class="text-3xl font-black mb-4">營業項目</h2>
-        <p class="text-slate-500 text-lg font-medium">廣告大小事，這裡通通有，為您省下時間與成本</p>
+        <p class="text-slate-500 text-lg font-medium">廣告大小事，這裡通通有</p>
     </div>
     <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-10 bg-white p-8 md:p-12 rounded-[40px] shadow-sm border border-slate-100">
         <div class="space-y-3">
@@ -169,13 +168,9 @@ body { font-family: 'Noto Sans TC', sans-serif; scroll-behavior: smooth; }
 <section id="gallery" class="py-20 bg-white overflow-hidden">
 <div class="max-w-7xl mx-auto px-4 mb-12">
 <h2 class="text-3xl font-black text-center">作品展示</h2>
-<p class="text-center mt-4 text-slate-500 font-medium">作品繁多無法一一呈現，任何廣告相關，歡迎親臨店面參觀討論</p>
 <div class="mt-8 flex justify-center md:justify-end">
   <a href="gallery2.html" class="flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-6 py-2.5 rounded-full font-bold shadow-md transition-all active:scale-95">
     <span>觀看更多作品</span>
-    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
-    </svg>
   </a>
 </div>
 </div>
@@ -216,7 +211,7 @@ body { font-family: 'Noto Sans TC', sans-serif; scroll-behavior: smooth; }
 </div>
 <div class="bg-slate-800 p-6 rounded-2xl border-l-4 border-yellow-400 shadow-lg">
 <h4 class="text-xl font-bold mb-2 text-yellow-400">HP 環保無味乳膠大圖機</h4>
-<p class="text-slate-300">最新乳膠墨水技術，顏色鮮豔、耐氣候，適合室內外各類海報帆布。</p>
+<p class="text-slate-300">最新乳膠墨水技術</p>
 </div>
 </div>
 <div class="rounded-3xl overflow-hidden shadow-2xl">
@@ -250,22 +245,18 @@ body { font-family: 'Noto Sans TC', sans-serif; scroll-behavior: smooth; }
 <h3 class="font-bold mb-4 text-xl">營業時間</h3>
 <p class="mb-4">周一至周五：08:00 - 17:30</p>
 <p class="text-slate-500 text-sm mb-6">午休時間：12:00 - 13:30<br>國定假日：休息</p>
-<div class="border-t pt-6">
-<a href="https://line.me/ti/p/~0920612429" class="block w-full text-center bg-green-500 text-white py-3 rounded-xl font-bold hover:bg-green-600 transition">立即線上詢問</a>
-</div>
 </div>
 </div>
 </section>
 
 <footer class="py-10 text-center text-slate-400 text-xs border-t bg-slate-50">
-<p>© 2026 藍天照相打字行 | 花蓮在地 40 年專業保證</p>
+<p>© 2026 藍天廣告 | 花蓮在地 40 年專業保證</p>
 </footer>
 
 <script>
     const canvas = document.getElementById('pen-canvas');
     const ctx = canvas.getContext('2d');
     const pen = document.getElementById('pen-knife');
-    const targetItem = document.getElementById('target-nav-item');
     let points = [];
     let isFinished = false;
 
@@ -286,37 +277,45 @@ body { font-family: 'Noto Sans TC', sans-serif; scroll-behavior: smooth; }
 
     function runAnimation() {
         pen.style.display = 'block';
-        const targetRect = targetItem.getBoundingClientRect();
-        const endPoint = { x: targetRect.left + targetRect.width / 2, y: targetRect.top + targetRect.height / 2 };
+        
+        // 設計多段路徑：從螢幕外進入，進行多次劇烈的上下跳動，最後向右下方離開
+        const pathSegments = [
+            // 第一跳：左上到中下
+            { p0: {x: -50, y: 100}, p1: {x: 200, y: 0}, p2: {x: 100, y: 800}, p3: {x: 300, y: 500} },
+            // 第二跳：向上衝再向下落
+            { p0: {x: 300, y: 500}, p1: {x: 400, y: -200}, p2: {x: 500, y: 1000}, p3: {x: 600, y: 300} },
+            // 第三跳：再次大幅度上下跳動
+            { p0: {x: 600, y: 300}, p1: {x: 700, y: 0}, p2: {x: 800, y: 900}, p3: {x: 900, y: 400} },
+            // 最後一跳：向螢幕右下方邊緣消失
+            { p0: {x: 900, y: 400}, p1: {x: 1100, y: 200}, p2: {x: 1000, y: window.innerHeight}, p3: {x: window.innerWidth + 100, y: window.innerHeight + 200} }
+        ];
 
-        const p0 = { x: -50, y: window.innerHeight * 0.9 }; 
-        const p1 = { x: window.innerWidth * 0.3, y: window.innerHeight * 0.1 };
-        const p2 = { x: window.innerWidth * 0.6, y: window.innerHeight * 0.8 };
-        const p3 = endPoint;
-
+        let segmentIdx = 0;
         let progress = 0;
-        const speed = 0.003; // 調低數值，讓動畫畫更久 (原本是 0.006)
+        const speed = 0.012; // 速度快
 
         function step() {
             if (isFinished) return;
-            if (progress <= 1) {
-                const pos = getBezier(progress, p0, p1, p2, p3);
+            
+            if (segmentIdx < pathSegments.length) {
+                const seg = pathSegments[segmentIdx];
+                const pos = getBezier(progress, seg.p0, seg.p1, seg.p2, seg.p3);
                 
-                // 【核心修正】讓光線準確從筆尖（圖片底端中心）出來
-                // 筆刀寬度為 40px，高約為 80px(比例)，所以偏移量設為寬度一半與接近高度
+                // 筆尖精確出光定位
                 pen.style.left = (pos.x - 20) + 'px'; 
                 pen.style.top = (pos.y - 78) + 'px'; 
 
                 points.push({ x: pos.x, y: pos.y, time: Date.now() });
+                
                 progress += speed;
+                if (progress >= 1) {
+                    progress = 0;
+                    segmentIdx++;
+                }
                 requestAnimationFrame(step);
             } else {
-                setTimeout(() => {
-                    isFinished = true;
-                    pen.style.transition = 'opacity 0.6s';
-                    pen.style.opacity = '0';
-                    setTimeout(() => pen.style.display = 'none', 600);
-                }, 400);
+                isFinished = true;
+                pen.style.display = 'none';
             }
         }
         step();
@@ -328,16 +327,13 @@ body { font-family: 'Noto Sans TC', sans-serif; scroll-behavior: smooth; }
         const decay = 500; 
 
         if (points.length > 1) {
-            ctx.shadowBlur = 12;
-            ctx.shadowColor = "white";
-            ctx.lineCap = "round";
-            ctx.lineJoin = "round";
+            ctx.shadowBlur = 12; ctx.shadowColor = "white";
+            ctx.lineCap = "round"; ctx.lineJoin = "round";
             for (let i = 1; i < points.length; i++) {
                 const age = now - points[i].time;
                 if (age > decay) continue;
                 const alpha = 1 - (age / decay);
-                ctx.beginPath();
-                ctx.lineWidth = 3 * alpha; 
+                ctx.beginPath(); ctx.lineWidth = 3 * alpha; 
                 ctx.strokeStyle = `rgba(255, 255, 255, ${alpha})`;
                 ctx.moveTo(points[i-1].x, points[i-1].y);
                 ctx.lineTo(points[i].x, points[i].y);
@@ -348,10 +344,7 @@ body { font-family: 'Noto Sans TC', sans-serif; scroll-behavior: smooth; }
         requestAnimationFrame(drawTrail);
     }
 
-    window.addEventListener('load', () => {
-        runAnimation();
-        drawTrail();
-    });
+    window.addEventListener('load', () => { runAnimation(); drawTrail(); });
 </script>
 </body>
 </html>
