@@ -121,6 +121,16 @@ transform: rotate(-10deg);
 .float-btn:hover { transform: scale(1.1); }
 .bg-line { background-color: #06C755; }
 .bg-phone { background-color: #2693FF; }
+
+/* === 觀看更多作品：閃動動畫 === */
+@keyframes pulse-blue {
+    0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(37, 99, 235, 0.7); }
+    70% { transform: scale(1.05); box-shadow: 0 0 0 10px rgba(37, 99, 235, 0); }
+    100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(37, 99, 235, 0); }
+}
+.animate-pulse-custom {
+    animation: pulse-blue 2s infinite;
+}
 </style>
 </head>
 <body class="text-slate-800">
@@ -280,7 +290,7 @@ transform: rotate(-10deg);
 <div class="max-w-7xl mx-auto px-4 mb-12">
 <h2 class="text-3xl font-black text-center">作品展示</h2>
 <div class="mt-8 flex justify-center md:justify-end">
-<a href="gallery2.html" class="flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-6 py-2.5 rounded-full font-bold shadow-md transition-all active:scale-95">
+<a href="gallery2.html" class="flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-6 py-2.5 rounded-full font-bold shadow-md transition-all active:scale-95 animate-pulse-custom">
 <span>觀看更多作品</span>
 </a>
 </div>
