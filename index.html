@@ -20,7 +20,7 @@ body {
     scroll-behavior: smooth; 
     background-color: #f8fafc;
     background-image: url('bg.webp'); /* 已更換為您的背景圖案 */
-    background-attachment: fixed; /* 固定背景增加層次感 */
+    background-attachment: scroll; /* 固定背景增加層次感 */
     background-size: cover; /* 確保圖片覆蓋全螢幕 */
     background-position: center;
 }
@@ -107,7 +107,7 @@ transform: rotate(-10deg);
 </nav>
 
 <header class="hero-bg min-h-[500px] flex items-center justify-center text-white text-center px-4 py-12 relative">
-    <video autoplay loop muted playsinline poster="header-bg.jpg" preload="metadata" class="absolute inset-0 w-full h-full object-cover z-0 opacity-60 hidden md:block">
+    <video autoplay loop muted playsinline poster="header-bg.jpg" preload="metadata" class="absolute inset-0 w-full h-full object-cover z-0 opacity-60 ">
         <source src="production.mp4" type="video/mp4">
     </video>
     <div class="video-overlay"></div>
