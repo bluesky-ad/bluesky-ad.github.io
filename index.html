@@ -12,7 +12,7 @@
 <meta property="og:description" content="專業電腦割字、紅布條、大圖輸出，快速交件，在地深耕40年誠信經營。">
 <meta property="og:type" content="website">
 <script src="https://cdn.tailwindcss.com"></script>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;700;900&family=Noto+Serif+TC:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;700;900&family=Noto+Serif+TC:wght@400;700&display=swap" rel="stylesheet">
 <style>
 /* === 1. 注入靈魂：更換為您提供的 bg.webp 背景 === */
 body { 
@@ -56,6 +56,22 @@ animation: scroll 60s linear infinite;
 animation-play-state: paused;
 }
 
+/* 標題下方跑馬燈專用動畫 */
+@keyframes textLoop {
+    0% { transform: translateX(100%); }
+    100% { transform: translateX(-100%); }
+}
+.text-marquee-wrapper {
+    overflow: hidden;
+    width: 100%;
+}
+.text-marquee {
+    display: inline-flex;
+    align-items: center;
+    white-space: nowrap;
+    animation: textLoop 20s linear infinite;
+}
+
 /* === 筆刀動畫專用外掛樣式 === */
 #animation-layer {
 position: fixed;
@@ -80,6 +96,30 @@ transform: rotate(-10deg);
     background: linear-gradient(to bottom, rgba(38, 147, 255, 0.85), rgba(38, 147, 255, 0.7));
     z-index: 2;
 }
+
+/* 浮動圖標樣式 */
+.float-contact {
+    position: fixed;
+    right: 20px;
+    bottom: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    z-index: 1000;
+}
+.float-btn {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    transition: transform 0.3s;
+}
+.float-btn:hover { transform: scale(1.1); }
+.bg-line { background-color: #06C755; }
+.bg-phone { background-color: #2693FF; }
 </style>
 </head>
 <body class="text-slate-800">
@@ -87,6 +127,15 @@ transform: rotate(-10deg);
 <div id="animation-layer">
 <canvas id="pen-canvas"></canvas>
 <img src="pen.png" id="pen-knife" alt="pen">
+</div>
+
+<div class="float-contact">
+    <a href="https://line.me/ti/p/~0920612429" class="float-btn bg-line" title="LINE 諮詢">
+        <img src="line.png" alt="LINE" class="w-10 h-10">
+    </a>
+    <a href="#contact-phone" class="float-btn bg-phone" title="電話洽詢">
+        <svg viewBox="0 0 24 24" class="w-8 h-8 fill-white"><path d="M6.6 2c-1.4 0-2.8 1.1-3.2 2.5l-1.3 4.3c-.2.6.1 1.3.7 1.6l4.2 1.8c.6.3 1.3 0 1.6-.6l1.2-2.5c2.9 1.2 5.2 3.5 6.4 6.4l-2.5 1.2c-.6.3-.9 1-.6 1.6l1.8 4.2c.3.6.9.9 1.6.7l4.3-1.3c1.4-.4 2.5-1.8 2.5-3.2V15c0-7.2-5.8-13-13-13H6.6z"/></svg>
+    </a>
 </div>
 
 <nav class="bg-white/95 backdrop-blur-md shadow-sm sticky top-0 z-[100]">
@@ -106,33 +155,38 @@ transform: rotate(-10deg);
 </div>
 </nav>
 
-<header class="hero-bg min-h-[500px] flex items-center justify-center text-white text-center px-4 py-12 relative">
+<header class="hero-bg min-h-[500px] flex flex-col items-center justify-center text-white text-center relative">
     <video autoplay loop muted playsinline poster="header-bg.jpg" preload="metadata" class="absolute inset-0 w-full h-full object-cover z-0 opacity-60 ">
         <source src="production.mp4" type="video/mp4">
     </video>
     <div class="video-overlay"></div>
 
-    <div class="relative z-10 reveal active w-full max-w-full px-2">
-        <div class="inline-block bg-yellow-400 text-blue-900 px-4 py-1 rounded-full text-sm font-bold mb-4 shadow-lg">花蓮在地 40 年老字號</div>
+    <div class="relative z-10 reveal active w-full max-w-full px-4 flex-grow flex flex-col justify-center">
+        <div class="inline-block bg-yellow-400 text-blue-900 px-4 py-1 rounded-full text-sm font-bold mb-4 shadow-lg self-center">花蓮在地 40 年老字號</div>
         
-        <h1 class="text-[6.5vw] md:text-6xl font-black mb-4 leading-tight whitespace-nowrap">電腦割字•紅布條•大圖輸出</h1>
+        <h1 class="text-[6.5vw] md:text-6xl font-black mb-4 leading-tight whitespace-nowrap">電腦割字 紅布條 大圖輸出</h1>
         
-        <p class="text-sm md:text-lg text-white/80 mb-2 font-medium tracking-widest">橫跨手工與數位，四十載經驗，品質始終如一。</p>
-        
-        <p class="text-[4.2vw] md:text-3xl font-black text-yellow-400 mb-6 drop-shadow-md whitespace-nowrap">產品貼紙少量可印 • 形狀不拘 • 快速交件</p>
-        
-        <p class="text-lg md:text-2xl mb-8 opacity-90 font-light">專業經驗豐富 • 品質最優 • 服務親切</p>
-        
-        <div class="flex flex-nowrap justify-center gap-2 md:gap-8 mb-8 text-[2.8vw] md:text-base font-bold bg-black/10 py-3 px-2 md:px-6 rounded-full backdrop-blur-sm whitespace-nowrap overflow-hidden">
-            <span class="flex items-center shrink-0">⚡ 快速交件</span>
-            <span class="flex items-center shrink-0">💎 品質保證</span>
-            <span class="flex items-center shrink-0">💰 價格合理</span>
-            <span class="flex items-center shrink-0">🏢 實體店面</span>
+        <div class="text-[28px] md:text-[36px] text-white/90 mb-4 font-light tracking-normal leading-loose">
+            <p>從手工到數位</p>
+            <p>走過四十個年頭</p>
+            <p>不變的，是我們對品質的堅持</p>
         </div>
+    </div>
 
-        <div class="flex flex-wrap justify-center gap-4">
-            <a href="https://line.me/ti/p/~0920612429" class="bg-green-500 hover:bg-green-600 text-white px-6 md:px-8 py-3 rounded-full font-bold shadow-xl transition text-sm md:text-base">LINE 諮詢：0920612429</a>
-            <a href="tel:038357789" class="bg-white text-blue-900 px-6 md:px-8 py-3 rounded-full font-bold shadow-xl transition text-sm md:text-base">電話洽詢：03-8357789</a>
+    <div class="relative z-10 w-full pb-6">
+        <div class="text-marquee-wrapper">
+            <div class="text-marquee">
+                <span class="text-[4vw] md:text-[24px] font-light text-[#FFB6C1] drop-shadow-md mx-4">貼紙少量可印  形狀不拘  快速交件</span>
+                
+                               <div class="flex items-center gap-4 mx-4">
+                    <span class="text-[#FF1493] font-bold italic text-2xl">專業</span>
+                    <span class="text-[#FF1493] font-bold italic text-2xl">品質</span>
+                    <span class="text-[#FF1493] font-bold italic text-2xl">服務</span>
+                </div>
+
+
+                
+            </div>
         </div>
     </div>
 </header>
@@ -141,7 +195,14 @@ transform: rotate(-10deg);
 <div class="max-w-4xl mx-auto px-3 text-center">
 <h2 class="text-3xl font-black mb-2">為什麼選擇藍天？</h2>
 
-<p class="text-lg md:text-xl text-blue-600 font-bold mb-8">不管是一條布條，還是一整個活動，我們都當自己的事在做。</p>
+<p class="text-lg md:text-xl text-blue-600 font-bold mb-4">不管是一條布條，還是一整個活動，我們都當自己的事在做。</p>
+
+<div class="flex flex-nowrap justify-center gap-2 md:gap-8 mb-8 text-[2.8vw] md:text-base font-bold bg-slate-100 py-3 px-2 md:px-6 rounded-full whitespace-nowrap overflow-hidden max-w-2xl mx-auto">
+    <span class="flex items-center shrink-0">⚡ 快速交件</span>
+    <span class="flex items-center shrink-0">💎 品質保證</span>
+    <span class="flex items-center shrink-0">💰 價格合理</span>
+    <span class="flex items-center shrink-0">🏢 實體店面</span>
+</div>
 
 <div class="text-lg md:text-xl text-slate-700 leading-relaxed font-medium">
 <p>在地深耕 <span class="text-blue-600 font-black">40 餘年</span>，我們始終陪伴在您身邊。</p>
@@ -171,7 +232,7 @@ transform: rotate(-10deg);
         <ul class="ml-4 space-y-1 text-slate-600 font-bold border-l-2 border-indigo-100 pl-4">
             <li>• 廣告招牌 / 廣告燈箱</li>
             <li>• 金屬字 / 壓克力字 / 水晶字</li>
-            <li>• 阿蘭諾字 / 立體字 / 壓克力製品</li>
+            <li>• 阿蘭諾字 / 立體字 / 壓克力製作</li>
         </ul>
     </div>
     <div class="bg-white p-6 rounded-3xl shadow-[0_10px_30px_rgba(0,0,0,0.08)] border border-slate-100 border-t-4 border-t-orange-500 hover:shadow-2xl transition-all duration-300">
@@ -281,7 +342,7 @@ transform: rotate(-10deg);
             <div class="flex flex-col md:flex-row items-center md:items-start space-y-6 md:space-y-0 md:space-x-8 p-6 bg-white rounded-3xl border border-slate-100 shadow-lg">
                 <div class="flex-1 space-y-4 text-lg">
                     <p>📍 <strong>地址：</strong>花蓮市明心街6-5號</p>
-                    <p>📞 <strong>電話：</strong>03-8357789</p>
+                    <p id="contact-phone">📞 <strong>電話：</strong><a href="tel:038357789" class="hover:text-blue-600">03-8357789</a></p>
                     <p>💬 <strong>LINE：</strong>0920612429</p>
                     <a href="https://line.me/ti/p/~0920612429" class="inline-block bg-green-500 text-white px-6 py-2 rounded-full font-bold text-sm hover:bg-green-600 transition shadow-md">點我加好友</a>
                 </div>
@@ -322,7 +383,6 @@ transform: rotate(-10deg);
 </footer>
 
 <script>
-/* === 3. 注入靈魂：滾動啟動監測器 (Intersection Observer) === */
 const observerOptions = { threshold: 0.1 };
 const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
@@ -357,13 +417,12 @@ return { x, y };
 
 function runAnimation() {
 pen.style.display = 'block';
-// 優化後的路徑點：確保銜接處的控制點與銜接點成一直線 (G1 連續)
 const pathSegments = [
     { p0: {x: -100, y: 200}, p1: {x: 100, y: 100}, p2: {x: 200, y: 500}, p3: {x: 350, y: 400} },
     { p0: {x: 350, y: 400},  p1: {x: 500, y: 300}, p2: {x: 600, y: 800}, p3: {x: 750, y: 550} },
     { p0: {x: 750, y: 550},  p1: {x: 900, y: 300}, p2: {x: 1000, y: 100}, p3: {x: window.innerWidth + 100, y: 250} }
 ];
-let segmentIdx = 0; let progress = 0; const speed = 0.012; // 調降速度以換取更高細膩度
+let segmentIdx = 0; let progress = 0; const speed = 0.012; 
 function step() {
 if (isFinished) return;
 if (segmentIdx < pathSegments.length) {
@@ -381,16 +440,16 @@ step();
 
 function drawTrail() {
 ctx.clearRect(0, 0, canvas.width, canvas.height);
-const now = Date.now(); const decay = 550; // 稍微拉長殘影衰減時間
+const now = Date.now(); const decay = 550; 
 if (points.length > 1) {
 ctx.shadowBlur = 20; 
-ctx.shadowColor = "white"; // 鎖定原來的白色發光
+ctx.shadowColor = "white"; 
 ctx.lineCap = "round"; ctx.lineJoin = "round";
 for (let i = 1; i < points.length; i++) {
 const age = now - points[i].time; if (age > decay) continue;
 const alpha = 1 - (age / decay);
-ctx.beginPath(); ctx.lineWidth = 6 * alpha; // 調整到適中粗細
-ctx.strokeStyle = `rgba(255, 255, 255, ${alpha})`; // 維持原來的光譜顏色
+ctx.beginPath(); ctx.lineWidth = 6 * alpha; 
+ctx.strokeStyle = `rgba(255, 255, 255, ${alpha})`; 
 ctx.moveTo(points[i-1].x, points[i-1].y); ctx.lineTo(points[i].x, points[i].y); ctx.stroke();
 }
 }
@@ -398,7 +457,6 @@ points = points.filter(p => now - p.time < decay);
 requestAnimationFrame(drawTrail);
 }
 window.addEventListener('load', () => { 
-    // 加入微幅延遲啟動，確保網頁完全渲染後再執行絲滑動畫
     setTimeout(() => {
         runAnimation(); 
         drawTrail(); 
