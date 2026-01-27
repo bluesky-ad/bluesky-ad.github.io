@@ -69,8 +69,7 @@
         <div id="image-grid" class="waterfall-container"></div>
 
         <div id="loading-status" class="text-center py-12">
-            <div id="loader" class="inline-block w-8 h-8 border-4 border-blue-600 border-t-transparent rounded-full animate-spin"></div>
-            <p id="status-text" class="text-slate-400 text-sm mt-4 font-medium">正在載入作品集...</p>
+            <p id="status-text" class="text-slate-400 text-sm mt-4 font-medium italic">—— 已顯示所有 229 張作品 ——</p>
         </div>
     </div>
 </section>
@@ -81,63 +80,30 @@
 
 <script>
     const grid = document.getElementById('image-grid');
-    const statusText = document.getElementById('status-text');
-    const loader = document.getElementById('loader');
-    
-    const prefix = 'pp'; // 照片前綴
-    const ext = '.webp'; // 照片副檔名
-    let currentIndex = 1;
-    const batchSize = 5; // 每次同時偵測 5 張
+    const totalImages = 229; // 修改：設定為目前的總張數 229
+    const prefix = 'pp'; 
+    const ext = '.webp'; 
 
-    function checkAndLoadBatch() {
-        let batchPromises = [];
-
-        for (let i = 0; i < batchSize; i++) {
-            const index = currentIndex + i;
-            // 修正點：自動補零成三位數 (如 1 變成 001)
-            const paddedIndex = index.toString().padStart(3, '0');
+    function loadGallery() {
+        // 直接循環產出 229 張圖片，不進行網路偵測以加速載入
+        for (let i = 1; i <= totalImages; i++) {
+            const paddedIndex = i.toString().padStart(3, '0');
             const fileName = `${prefix}${paddedIndex}${ext}`;
-            batchPromises.push(checkFileExists(fileName, index));
-        }
-
-        Promise.all(batchPromises).then(results => {
-            const successfulImages = results.filter(r => r.exists).sort((a, b) => a.id - b.id);
             
-            if (successfulImages.length > 0) {
-                successfulImages.forEach(imgData => {
-                    const item = document.createElement('div');
-                    item.className = 'waterfall-item';
-                    item.innerHTML = `<img src="${imgData.src}" loading="lazy" class="w-full rounded-2xl shadow-sm border border-white hover:shadow-lg transition-all duration-300" alt="作品${imgData.id}">`;
-                    grid.appendChild(item);
-                });
-
-                if (successfulImages.length === batchSize) {
-                    currentIndex += batchSize;
-                    setTimeout(checkAndLoadBatch, 50); 
-                } else {
-                    finishLoading(currentIndex + successfulImages.length - 1);
-                }
-            } else {
-                finishLoading(currentIndex - 1);
-            }
-        });
+            const item = document.createElement('div');
+            item.className = 'waterfall-item';
+            item.innerHTML = `
+                <img src="${fileName}" 
+                     loading="lazy" 
+                     class="w-full rounded-2xl shadow-sm border border-white hover:shadow-lg transition-all duration-300" 
+                     alt="作品${i}"
+                     onerror="this.parentElement.style.display='none'">`;
+            grid.appendChild(item);
+        }
     }
 
-    function checkFileExists(src, id) {
-        return new Promise(resolve => {
-            const img = new Image();
-            img.onload = () => resolve({ exists: true, src: src, id: id });
-            img.onerror = () => resolve({ exists: false, id: id });
-            img.src = src;
-        });
-    }
-
-    function finishLoading(total) {
-        loader.classList.add('hidden');
-        statusText.innerHTML = total > 0 ? `已顯示所有作品（共 ${total} 張）` : "目前尚無作品照片";
-    }
-
-    window.onload = checkAndLoadBatch;
+    // 頁面結構準備好後立即執行
+    document.addEventListener('DOMContentLoaded', loadGallery);
 </script>
 
 </body>
