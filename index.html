@@ -134,14 +134,15 @@ transform: rotate(-10deg);
 .bg-line { background-color: #06C755; }
 .bg-phone { background-color: #2693FF; }
 
-/* === 觀看更多作品：閃動動畫 === */
-@keyframes pulse-blue {
-    0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(37, 99, 235, 0.7); }
-    70% { transform: scale(1.05); box-shadow: 0 0 0 10px rgba(37, 99, 235, 0); }
-    100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(37, 99, 235, 0); }
+/* === 觀看更多作品：閃亮與強烈閃動動畫 === */
+@keyframes pulse-intense {
+    0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.9), 0 0 10px rgba(37, 99, 235, 0.8); }
+    50% { transform: scale(1.1); box-shadow: 0 0 20px 10px rgba(255, 255, 255, 0), 0 0 30px 15px rgba(59, 130, 246, 0.6); }
+    100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255, 255, 255, 0), 0 0 10px rgba(37, 99, 235, 0.8); }
 }
 .animate-pulse-custom {
-    animation: pulse-blue 2s infinite;
+    animation: pulse-intense 1.2s infinite ease-in-out;
+    border: 2px solid rgba(255, 255, 255, 0.8); /* 增加白邊框感 */
 }
 </style>
 </head>
@@ -157,7 +158,7 @@ transform: rotate(-10deg);
         <img src="line.png" alt="LINE" class="w-10 h-10">
     </a>
     <a href="#contact" class="float-btn bg-phone" title="電話洽詢">
-        <svg viewBox="0 0 24 24" class="w-8 h-8 fill-white"><path d="M6.6 2c-1.4 0-2.8 1.1-3.2 2.5l-1.3 4.3c-.2.6.1 1.3.7 1.6l4.2 1.8c.6.3 1.3 0 1.6-.6l1.2-2.5c2.9 1.2 5.2 3.5 6.4 6.4l-2.5 1.2c-.6.3-.9 1-.6 1.6l1.8 4.2c.3.6.9.9 1.6.7l4.3-1.3c1.4-.4 2.5-1.8 2.5-3.2V15c0-7.2-5.8-13-13-13H6.6z"/></svg>
+        <svg viewBox="0 0 24 24" class="w-8 h-8 fill-white"><path d="M6.6 2c-1.4 0-2.8 1.1-3.2 2.5l-1.3 4.3c-.2.6.1 1.3.7 1.6l4.2 1.8c.6.3 1.3 0 1.6-.6l1.2-2.5c2.9 1.2 5.2 3.5 6.4 6.4l-2.5 1.2c-.6.3-.9 1-.6 1.6l1.8 4.2c.3.6.9.9 1.6.7l4.3-1.3c1.4-.4 2.5-1.8 2.5-3.2V150c0-7.2-5.8-13-13-13H6.6z"/></svg>
     </a>
 </div>
 
@@ -290,7 +291,7 @@ transform: rotate(-10deg);
         <ul class="ml-4 space-y-1 text-slate-600 font-bold border-l-2 border-amber-100 pl-4">
             <li>• 剪綵用品 / 球花 / 揭牌布</li>
             <li>• 獎牌獎盃 / 禮贈品客製</li>
-            <li>• 選舉週邊用品 / 桌巾</li>
+            <li>• 選術週邊用品 / 桌巾</li>
             <li>• 其他未列出品項歡迎洽詢</li>
         </ul>
     </div>
@@ -302,8 +303,8 @@ transform: rotate(-10deg);
 <div class="max-w-7xl mx-auto px-4 mb-12">
 <h2 class="text-3xl font-black text-center">作品展示</h2>
 <div class="mt-8 flex justify-center md:justify-end">
-<a href="gallery2.html" class="flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-6 py-2.5 rounded-full font-bold shadow-md transition-all active:scale-95 animate-pulse-custom">
-<span>觀看更多作品</span>
+<a href="gallery2.html" class="flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-full font-black text-lg shadow-2xl transition-all active:scale-95 animate-pulse-custom">
+<span>✨ 觀看更多作品 ✨</span>
 </a>
 </div>
 </div>
@@ -395,11 +396,14 @@ transform: rotate(-10deg);
 </div>
 </section>
 
-<section class="bg-white/60 backdrop-blur-sm py-6 px-4 border-t border-slate-100">
+<section class="bg-blue-900 py-12 px-6 border-t-8 border-yellow-400 reveal">
 <div class="max-w-6xl mx-auto text-center">
-<div class="service-list-font text-slate-400 text-[13px] leading-tight tracking-wider">
-專業電腦割字(快速交件).紅布條.拱門布條.彩色布條.肩帶.彩球.廣告招牌.燈箱.金屬字.壓克力字.水晶字.阿蘭諾字.立體字.不鏽鋼腐蝕牌.鈦金牌.噴漆字模.客製白板.壓克力製品.摸彩箱.大型彩色海報輸出.帆布輸出.布旗.直立旗.車貼.反光貼紙.關東旗.人形立牌.手拿版.拍照牌.打卡板.易拉展.X展架.油畫布.無框畫.國旗.刀旗.舞台背板.透明貼紙.標籤貼紙.少量貼紙.防水貼紙.造型貼紙.金銀箔貼紙.選舉週邊.冷熱裱護貝.各式印刷品.名片.廣告傳單.菜單.海報.面紙.書籍.型錄.摺頁.喜帖.請柬.手提袋.複寫聯單.L型資料夾.信封.VIP卡.識別證.臂章.扇子.年曆.日曆.三角桌曆.掛曆.其他廣告週邊.義工背心.號碼衣.號碼布.客製帽子.剪綵用品.動土用品.金鏟.手套.盤子租用.揭牌.彩球球花.龍柱貼字.獎牌獎盃.禮贈品客製.廣告編排設計.同行代工.其他未列出品項歡迎洽詢
-</div>
+    <div class="mb-6">
+        <span class="bg-yellow-400 text-blue-900 px-6 py-2 rounded-full font-black text-xl shadow-lg">專業服務項目</span>
+    </div>
+    <div class="service-list-font text-white text-lg md:text-xl leading-relaxed tracking-wide font-medium bg-blue-800/50 p-8 rounded-3xl border border-blue-400/30 shadow-2xl">
+        專業電腦割字(快速交件).紅布條.拱門布條.彩色布條.肩帶.彩球.廣告招牌.燈箱.金屬字.壓克力字.水晶字.阿蘭諾字.立體字.不鏽鋼腐蝕牌.鈦金牌.噴漆字模.客製白板.壓克力製品.摸彩箱.大型彩色海報輸出.帆布輸出.布旗.直立旗.車貼.反光貼紙.關東旗.人形立牌.手拿版.拍照牌.打卡板.易拉展.X展架.油畫布.無框畫.國旗.刀旗.舞台背板.透明貼紙.標籤貼紙.少量貼紙.防水貼紙.造型貼紙.金銀箔貼紙.選舉週邊.冷熱裱護貝.各式印刷品.名片.廣告傳單.菜單.海報.面紙.書籍.型錄.摺頁.喜帖.請柬.手提袋.複寫聯單.L型資料夾.信封.VIP卡.識別證.臂章.扇子.年曆.日曆.三角桌曆.掛曆.其他廣告週邊.義工背心.號碼衣.號碼布.客製帽子.剪綵用品.動土用品.金鏟.手套.盤子租用.揭牌.彩球球花.龍柱貼字.獎牌獎盃.禮贈品客製.廣告編排設計.同行代工.<span class="text-yellow-400 font-bold">相關產品眾多，無法一一列出，歡迎洽詢</span>
+    </div>
 </div>
 </section>
 
