@@ -7,7 +7,7 @@
 <script src="https://cdn.tailwindcss.com"></script>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;700;900&display=swap" rel="stylesheet">
 <style>
-    body { font-family: 'Noto Sans TC', sans-serif; }
+    body { font-family: 'Noto Sans TC', sans-serif; padding-bottom: 40px; } /* 預留空間給跑馬燈 */
     /* 瀑布流排版設定 */
     .waterfall-container {
         column-count: 2;
@@ -24,6 +24,43 @@
     @keyframes fadeIn {
         from { opacity: 0; transform: translateY(20px); }
         to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* LINE 浮動圖標樣式 */
+    .line-float {
+        position: fixed;
+        bottom: 80px;
+        right: 20px;
+        width: 50px;
+        height: 50px;
+        z-index: 999;
+        transition: transform 0.3s;
+    }
+    .line-float:hover { transform: scale(1.1); }
+
+    /* 跑馬燈樣式 */
+    .marquee-footer {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        background: #1e293b;
+        color: #fff;
+        padding: 8px 0;
+        z-index: 1000;
+        overflow: hidden;
+        white-space: nowrap;
+        font-size: 14px;
+        font-weight: bold;
+    }
+    .marquee-content {
+        display: inline-block;
+        padding-left: 100%;
+        animation: marquee 60s linear infinite;
+    }
+    @keyframes marquee {
+        0% { transform: translate(0, 0); }
+        100% { transform: translate(-100%, 0); }
     }
 </style>
 </head>
@@ -74,19 +111,38 @@
     </div>
 </section>
 
+<a href="https://line.me/ti/p/~0920612429" target="_blank" class="line-float">
+    <img src="line.png" alt="Line Contact" class="w-full h-full object-contain">
+</a>
+
+<div class="marquee-footer">
+    <div class="marquee-content">
+        專業電腦割字(快速交件).紅布條.拱門布條.彩色布條.肩帶.彩球.廣告招牌.燈箱.金屬字.壓克力字.水晶字.阿蘭諾字.立體字.不鏽鋼腐蝕牌.鈦金牌.噴漆字模.客製白板.壓克力製品.摸彩箱.大型彩色海報輸出.帆布輸出.布旗.直立旗.車貼.反光貼紙.關東旗.人形立牌.手拿版.拍照牌.打卡板.易拉展.X展架.油畫布.無框畫.國旗.刀旗.舞台背板.透明貼紙.標籤貼紙.少量貼紙.防水貼紙.造型貼紙.金銀箔貼紙.選舉週邊.冷熱裱護貝.各式印刷品.名片.廣告傳單.菜單.海報.面紙.書籍.型錄.摺頁.喜帖.請柬.手提袋.複寫聯單.L型資料夾.信封.VIP卡.識別證.臂章.扇子.年曆.日曆.三角桌曆.掛曆.其他廣告週邊.義工背心.號碼衣.號碼布.客製帽子.剪綵用品.動土用品.金鏟.手套.盤子租用.揭牌.彩球球花.龍柱貼字.獎牌獎盃.禮贈品客製.廣告編排設計.同行代工.其他未列出品項歡迎洽詢
+    </div>
+</div>
+
 <footer class="py-10 text-center text-slate-400 text-xs border-t bg-white">
     <p>© 2026 藍天照相打字行 | 花蓮在地 40 年專業保證</p>
 </footer>
 
 <script>
     const grid = document.getElementById('image-grid');
-    const totalImages = 260; // 修改：設定為目前的總張數 260
+    const totalImages = 260; 
     const prefix = 'pp'; 
     const ext = '.webp'; 
 
     function loadGallery() {
-        // 直接循環產出 229 張圖片，不進行網路偵測以加速載入
-        for (let i = 1; i <= totalImages; i++) {
+        // 1. 產生數字陣列 1-260
+        let indices = Array.from({length: totalImages}, (_, i) => i + 1);
+        
+        // 2. 使用 Fisher-Yates 演算法進行隨機排序
+        for (let i = indices.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [indices[i], indices[j]] = [indices[j], indices[i]];
+        }
+
+        // 3. 依照隨機後的順序渲染圖片
+        indices.forEach(i => {
             const paddedIndex = i.toString().padStart(3, '0');
             const fileName = `${prefix}${paddedIndex}${ext}`;
             
@@ -99,10 +155,9 @@
                      alt="作品${i}"
                      onerror="this.parentElement.style.display='none'">`;
             grid.appendChild(item);
-        }
+        });
     }
 
-    // 頁面結構準備好後立即執行
     document.addEventListener('DOMContentLoaded', loadGallery);
 </script>
 
